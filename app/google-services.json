@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "59035137146",
+    "firebase_url": "https://pushapp-867c9.firebaseio.com",
+    "project_id": "pushapp-867c9",
+    "storage_bucket": "pushapp-867c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59035137146:android:20dc6ddafc1fdc82",
+        "android_client_info": {
+          "package_name": "com.mdeveloper.diegoaraujo.pushapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59035137146-25b0shagb2i63kbb1dcsighd25ioj7iv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcHbMN8ZTeFhggAr2WWu66BLgxhiMX1bQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
