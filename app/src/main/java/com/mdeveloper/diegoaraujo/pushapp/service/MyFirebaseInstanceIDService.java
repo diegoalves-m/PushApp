@@ -2,6 +2,8 @@ package com.mdeveloper.diegoaraujo.pushapp.service;
 
 import android.util.Log;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
@@ -12,6 +14,17 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     private static final String TAG = "MyFirebaseIIDService";
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Token");
+    }
 
     @Override
     public void onTokenRefresh() {
@@ -26,6 +39,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     }
 
     private void sendRegistrationToServer(String token) {
+        databaseReference.setValue(token);
         //Crie aqui a implementação de envio do Token ao servidor
     }
 }
