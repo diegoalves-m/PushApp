@@ -10,7 +10,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button;
+    Button button, button2;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -26,7 +26,15 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseReference.setValue("Conductor");
+                databaseReference.setValue("Accenture");
+            }
+        });
+
+        button2 = (Button) findViewById(R.id.button3);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseReference.setValue(null);
             }
         });
     }

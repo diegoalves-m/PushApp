@@ -16,10 +16,18 @@
         android:text="@string/cdt" />
 
     <Button
-        android:text="Test database"
+        android:text="Add database"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/button2" />
+
+    <Button
+        android:text="Remove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button3" />
 </RelativeLayout>

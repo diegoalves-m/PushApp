@@ -20,7 +20,7 @@ import com.mdeveloper.diegoaraujo.pushapp.R;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
-    private static String TAG = "Messaging";
+    String TAG = "Messaging";
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -29,17 +29,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, "From: " + remoteMessage.getFrom());
 
         if (remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+            String d = remoteMessage.getData().get("message");
+
+            sendNotificationOpenWeb(remoteMessage);
         }
 
         if (remoteMessage.getNotification() != null) {
-            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+           // sendNotificationOpenMain(remoteMessage);
         }
 
-        sendNotification(remoteMessage);
+
     }
 
-    private void sendNotification(RemoteMessage message) {
+    private void sendNotificationOpenMain(RemoteMessage message) {
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -56,6 +58,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, notificationBuilder.build());
+    }
 
+    private void sendNotificationOpenWeb(RemoteMessage message) {
+
+        Intent intent = new Intent();
+       // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setAction(Intent.ACTION_VIEW);
+        //intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(message.getData().get("message")));
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,intent, 0);
+
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_adb_black_24dp)
+                .setContentTitle(message.getNotification().getTitle())
+                .setContentText(message.getNotification().getBody())
+                .setAutoCancel(true)
+                .setSound(soundUri)
+                .setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0, notificationBuilder.build());
     }
 }
